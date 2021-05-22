@@ -2,7 +2,14 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3001;
 const cors = require('cors');
-app.use(cors());
+const corsOptions = {
+    origin: '*',
+    methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Authorization'],
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 const morgan = require('morgan');
 app.use(morgan('tiny'));
